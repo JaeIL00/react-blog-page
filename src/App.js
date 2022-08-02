@@ -4,7 +4,7 @@ import './App.css';
 function App() {
 
   const [contentTitle, setContentTitle] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학'])
-  const [thumbs, setThumbs] = useState(0)
+  const [thumbs, setThumbs] = useState([0, 0, 0])
   let [modal, setModal] = useState(false)
 
 
@@ -20,7 +20,7 @@ function App() {
         }}>
         글 수정
       </button>
-      <div className="list">
+      {/* <div className="list">
         <h4 onClick={() => { setModal(!modal) }}>{contentTitle[0]} <span onClick={()  => {setThumbs(thumbs+1)}}>👍</span> {thumbs} </h4>
         <p>7월 30일 발행</p>
       </div>
@@ -31,8 +31,21 @@ function App() {
       <div className="list">
       <h4>{contentTitle[2]}</h4>
         <p>7월 30일 발행</p>
-      </div>
-
+      </div>  */}
+      {
+        contentTitle.map((a, i) => {
+          return(
+            <div className="list" key={ i }>
+              <h4 onClick={() => { setModal(!modal) }}>{ a } <span onClick={()  => {
+                let copy = [...thumbs]
+                copy[i] = copy[i] + 1
+                setThumbs(copy)
+                }}>👍</span> {thumbs[i]} </h4>
+              <p>7월 30일 발행</p>
+            </div>
+          )
+        })
+      }
       {
         modal === true ? <Modal /> : null
       }
