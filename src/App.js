@@ -38,6 +38,11 @@ function App() {
                 setThumbs(copy)
                 }}>👍</span> {thumbs[i]} </h4>
               <p>7월 30일 발행</p>
+              <button onClick={() => {
+                let deleteContent = [...contentTitle]
+                deleteContent.splice(i, 1)
+                setContentTitle(deleteContent)
+              }}>삭제</button>
             </div>
           )
         })
